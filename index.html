@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeowHill - Purr-fect Products for Your Cat</title>
     
+    <!-- Favicon -->
+    <link rel="icon" href="Image20250907121922.jpg" type="image/jpeg">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -128,12 +131,9 @@
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#" class="flex items-center space-x-2 text-2xl font-bold text-slate-900 dark:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-500">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M8 12l2 2 4-4"/>
-                    </svg>
-                    <span>MeowHill</span>
+                <a href="#" class="flex items-center text-2xl font-bold text-slate-900 dark:text-white">
+                    <!-- Updated Logo -->
+                    <img src="Image20250907121922.jpg" alt="MeowHill Logo" class="h-10 w-auto">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -648,13 +648,13 @@
                 name: "Ultimate Cat Tree with Laser Toy",
                 price: 149.99,
                 originalPrice: 199.99,
-                category: "furniture",
-                image: "images/cat-tree.png",
-                image: "images/cat-tree.png",
+                category: "beds", // Updated from "furniture" to match filter "beds"
+                image: "Gemini_Generated_Image_p73c56p73c56p73c.jpg", // Updated placeholder
                 images: [
-  "images/cat-tree.png"
-],
-
+                    "Gemini_Generated_Image_p73c56p73c56p73c.jpg", // Full tree
+                    "Gemini_Generated_Image_xwajs7xwajs7xwaj.jpg", // Cat in cubby
+                    "Gemini_Generated_Image_6yhp6c6yhp6c6yhp.jpg"  // Cat with laser
+                ],
                 description: "The ultimate entertainment center for your feline friend! This 5-foot tall cat tree features multiple perches, cozy hideouts, sisal scratching posts, and an integrated automatic laser toy that keeps your cat engaged even when you're away.",
                 features: [
                     "5-foot tall multi-level design",
@@ -832,10 +832,12 @@
             currentProduct = product;
             
             document.getElementById('modalTitle').textContent = product.name;
-            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalImage').src = product.image; // Main image here
             document.getElementById('modalImage').alt = product.name;
             document.getElementById('modalDescription').textContent = product.description;
             document.getElementById('modalPrice').textContent = `$${product.price}`;
+            
+            // Note: This modal only shows one image. A more advanced modal would show product.images as a gallery.
             
             const originalPriceEl = document.getElementById('modalOriginalPrice');
             if (product.originalPrice) {
