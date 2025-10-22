@@ -444,7 +444,13 @@
                 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <img id="modalImage" src="" alt="" class="w-full h-64 object-cover rounded-lg">
+                        <!-- Main Image -->
+                        <img id="modalImage" src="" alt="" class="w-full h-64 object-cover rounded-lg mb-3">
+
+                        <!-- Image Gallery Thumbnails -->
+                        <div id="imageGallery" class="flex gap-2 justify-center">
+                            <!-- Thumbnail images will be inserted here -->
+                        </div>
                     </div>
                     <div>
                         <p id="modalDescription" class="text-slate-600 dark:text-slate-400 mb-4"></p>
@@ -830,15 +836,28 @@
 
         function openProductModal(product) {
             currentProduct = product;
-            
+
             document.getElementById('modalTitle').textContent = product.name;
-            document.getElementById('modalImage').src = product.image; // Main image here
+            document.getElementById('modalImage').src = product.image;
             document.getElementById('modalImage').alt = product.name;
             document.getElementById('modalDescription').textContent = product.description;
             document.getElementById('modalPrice').textContent = `$${product.price}`;
-            
-            // Note: This modal only shows one image. A more advanced modal would show product.images as a gallery.
-            
+
+            // Populate image gallery
+            const imageGallery = document.getElementById('imageGallery');
+            if (product.images && product.images.length > 1) {
+                imageGallery.innerHTML = product.images.map((img, index) => `
+                    <img
+                        src="${img}"
+                        alt="${product.name} - Image ${index + 1}"
+                        class="w-16 h-16 object-cover rounded cursor-pointer border-2 ${img === product.image ? 'border-amber-500' : 'border-slate-300 dark:border-slate-600'} hover:border-amber-400 transition-all"
+                        onclick="changeMainImage('${img}')"
+                    >
+                `).join('');
+            } else {
+                imageGallery.innerHTML = '';
+            }
+
             const originalPriceEl = document.getElementById('modalOriginalPrice');
             if (product.originalPrice) {
                 originalPriceEl.textContent = `$${product.originalPrice}`;
@@ -846,9 +865,22 @@
             } else {
                 originalPriceEl.classList.add('hidden');
             }
-            
+
             document.getElementById('quantityInput').value = 1;
             document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function changeMainImage(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+
+            // Update thumbnail borders
+            document.querySelectorAll('#imageGallery img').forEach(thumb => {
+                if (thumb.src.includes(imageSrc.split('/').pop())) {
+                    thumb.className = 'w-16 h-16 object-cover rounded cursor-pointer border-2 border-amber-500 transition-all';
+                } else {
+                    thumb.className = 'w-16 h-16 object-cover rounded cursor-pointer border-2 border-slate-300 dark:border-slate-600 hover:border-amber-400 transition-all';
+                }
+            });
         }
 
         function closeModal() {
