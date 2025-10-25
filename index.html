@@ -6,7 +6,7 @@
     <title>MeowHill - Purr-fect Products for Your Cat</title>
     
     <!-- Favicon -->
-    <link rel="icon" href="images/logo.png" type="image/jpeg">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -133,7 +133,7 @@
                 <!-- Logo -->
                 <a href="#" class="flex items-center text-2xl font-bold text-slate-900 dark:text-white">
                     <!-- Updated Logo -->
-                    <img src="images/logo.png" alt="MeowHill Logo" class="h-12 w-auto">
+                    <img src="images/logo.jpg" alt="MeowHill Logo" class="h-16 w-auto">
                 </a>
 
                 <!-- Desktop Navigation -->
@@ -445,7 +445,7 @@
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
                         <!-- Main Image -->
-                        <img id="modalImage" src="" alt="" class="w-full h-64 object-cover rounded-lg mb-3">
+                        <img id="modalImage" src="" alt="" class="w-full h-80 object-contain rounded-lg mb-3 bg-white dark:bg-slate-700">
 
                         <!-- Image Gallery Thumbnails -->
                         <div id="imageGallery" class="flex gap-2 justify-center">
@@ -703,8 +703,8 @@
                 productCard.onclick = () => openProductModal(product);
                 
                 productCard.innerHTML = `
-                    <div class="relative overflow-hidden">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out">
+                    <div class="relative overflow-hidden bg-white dark:bg-slate-600">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-contain transition-transform duration-300 ease-in-out">
                         ${product.sale ? '<span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">SALE</span>' : ''}
                         ${product.isNew ? '<span class="absolute top-3 left-3 bg-emerald-500 text-white text-xs font-semibold px-2 py-1 rounded-full">NEW</span>' : ''}
                     </div>
